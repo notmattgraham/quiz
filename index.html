@@ -826,6 +826,763 @@ async function showResult() {
         'Community access — guys working toward the same goal'
       ],
       cta: 'Get Instant Access — $49.99',
+      link: 'https://notmattgraham.github.io/skinnyfatfix'
+    },
+    cut: {
+      tag: 'cut',
+      tagText: 'Your Answer: Cut First',
+      headline: `${name}, you need to cut — but do it right.`,
+      sub: `You're carrying enough fat that losing it first will make a noticeable difference. But how you cut matters more than how hard you cut.`,
+      why: `The mistake most guys make when cutting is treating it like a pure fat loss problem — slash calories, do cardio, repeat. That works for the scale but it destroys muscle in the process. <strong>If you don't protect your muscle while you cut, you'll end up lean but flat</strong> — which is just a different version of the same problem. The goal isn't to lose weight. It's to lose fat while keeping every pound of muscle you have. That requires a structured approach to training and nutrition, not just eating less.`,
+      pitchTitle: 'The Skinny Fat Fix — $49.99',
+      pitchText: `Most guys cut and end up looking smaller but still soft — because they lose muscle along with the fat. The Skinny Fat Fix shows you how to cut the right way: losing fat while building muscle in the right places so when you get lean, you actually look lean. Not just lighter.`,
+      includes: [
+        'Lifting program that builds muscle while you cut',
+        'Nutrition guide — simple rules that support fat loss without misery',
+        'Macro calculation system — know exactly what to eat for your body',
+        'Supplement guide — what actually helps vs. what\'s a waste of money',
+        'Community access — guys working toward the same goal'
+      ],
+      cta: 'Get Instant Access — $49.99',
+      link: 'https://notmattgraham.github.io/skinnyfatfix'
+    },
+    bulk: {
+      tag: 'bulk',
+      tagText: 'Your Answer: Bulk First',
+      headline: `${name}, you need to build — not diet.`,
+      sub: `You're already lean enough. Another cut isn't going to get you where you want to go. You need muscle.`,
+      why: `Here's the thing about being lean with no muscle: <strong>you can't diet your way to an athletic physique.</strong> The definition you're looking for comes from muscle sitting under low body fat — not from being lighter. If you cut more, you'll just end up smaller and flatter. What your body actually needs right now is a structured training program with progressive overload and enough food to actually build. The fear of gaining a little fat during a bulk keeps a lot of guys stuck in a skinny, undefined body for years.`,
+      pitchTitle: 'The Skinny Fat Fix — $49.99',
+      pitchText: `You don't need more cardio. You don't need to eat less. You need to build — with a structured program that forces your body to grow muscle where it actually matters. The Skinny Fat Fix is built around progressive overload and a nutrition structure that supports muscle growth without burying you in unnecessary fat.`,
+      includes: [
+        'Lifting program built specifically for skinny fat physiques',
+        'Nutrition guide — simple rules that support muscle growth',
+        'Macro calculation system — know exactly what to eat for your body',
+        'Supplement guide — what actually helps vs. what\'s a waste of money',
+        'Community access — guys working toward the same goal'
+      ],
+      cta: 'Get Instant Access — $49.99',
+      link: 'https://notmattgraham.github.io/skinnyfatfix'
+    }
+  };
+
+  const r = results[result];
+  document.getElementById('result-card').innerHTML = `
+    <div class="result-banner">
+      <div class="result-tag ${r.tag}">${r.tagText}</div>
+      <div class="result-headline">${r.headline}</div>
+      <p class="result-sub">${r.sub}</p>
+    </div>
+    <div class="result-body">
+      <div class="why-title">Why This Is Your Answer</div>
+      <p class="why-text">${r.why}</p>
+      <div class="pitch-box">
+        <div class="pitch-title">${r.pitchTitle}</div>
+        <p class="pitch-text">${r.pitchText}</p>
+        <div class="pitch-includes">
+          ${r.includes.map(item => `<div class="pitch-item">${item}</div>`).join('')}
+        </div>
+        <a href="${r.link}" class="cta-btn">${r.cta}</a>
+        <p class="price-line">One-time payment. Instant access.</p>
+      </div>
+    </div>
+  `;
+}
+
+function retakeQuiz() {
+  current = 0;
+  answers = [];
+  selectedIndex = null;
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+</script>
+</body>
+</html>    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .question-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 5vw, 30px);
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .option:hover {
+    border-color: var(--accent);
+    background: rgba(232,213,163,0.04);
+  }
+
+  .option.selected {
+    border-color: var(--accent);
+    background: rgba(232,213,163,0.08);
+  }
+
+  .option-letter {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    margin-top: 1px;
+  }
+
+  .option.selected .option-letter {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--black);
+  }
+
+  .option-text {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 400;
+    color: var(--white);
+  }
+
+  .option-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+    font-weight: 300;
+  }
+
+  /* Nav */
+  .nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .btn {
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--black);
+    flex: 1;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-dark);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 14px 20px;
+  }
+
+  .btn-ghost:hover {
+    color: var(--white);
+    border-color: var(--muted);
+  }
+
+  /* Results */
+  .result-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .result-banner {
+    padding: 32px 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .result-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .result-tag.recomp {
+    background: rgba(232,213,163,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(232,213,163,0.3);
+  }
+
+  .result-tag.cut {
+    background: rgba(192,57,43,0.15);
+    color: #e74c3c;
+    border: 1px solid rgba(192,57,43,0.3);
+  }
+
+  .result-tag.bulk {
+    background: rgba(46,204,113,0.1);
+    color: #2ecc71;
+    border: 1px solid rgba(46,204,113,0.25);
+  }
+
+  .result-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 8vw, 52px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 14px;
+  }
+
+  .result-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .result-body {
+    padding: 32px 36px;
+  }
+
+  .why-title {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .why-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(245,245,240,0.8);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .why-text strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .pitch-box {
+    background: rgba(232,213,163,0.05);
+    border: 1px solid rgba(232,213,163,0.15);
+    border-radius: 3px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+
+  .pitch-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .pitch-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 18px;
+  }
+
+  .pitch-includes {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 20px;
+  }
+
+  .pitch-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: rgba(245,245,240,0.7);
+    font-weight: 300;
+  }
+
+  .pitch-item::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: var(--accent);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: var(--accent-dark);
+  }
+
+  .price-line {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    font-weight: 300;
+  }
+
+  .retake {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 16px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .retake:hover { color: var(--white); }
+
+  /* Email capture */
+  .email-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .email-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 7vw, 42px);
+    line-height: 1.05;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .email-sub {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .input {
+    padding: 14px 16px;
+    background: var(--off-black);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .input::placeholder { color: var(--muted); }
+  .input:focus { border-color: var(--accent); }
+
+  .privacy {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 300;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  @media (max-width: 480px) {
+    .card, .result-banner, .result-body, .email-card { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- SCREEN 1: INTRO -->
+  <div class="screen active" id="screen-intro">
+    <div class="header">
+      <div class="byline">Matt Graham</div>
+      <h1 class="headline">Should You <span>Bulk</span> or <span>Cut</span> First?</h1>
+      <p class="subhead">Answer 6 questions. Get a straight answer — no generic advice, no hedging.</p>
+    </div>
+    <div class="card" style="text-align:center; padding: 40px 36px;">
+      <p style="font-size:15px; color: var(--muted); line-height:1.7; font-weight:300; margin-bottom:28px;">
+        Most guys spin their wheels for years because they're solving the wrong problem. This quiz tells you exactly what your body needs right now and why.
+      </p>
+      <button class="btn btn-primary" style="width:100%; padding:18px;" onclick="startQuiz()">Take the Quiz →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: QUIZ -->
+  <div class="screen" id="screen-quiz">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Progress</span>
+        <span class="progress-count" id="progress-count">1 / 6</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width: 16.6%"></div>
+      </div>
+    </div>
+
+    <div class="card" id="question-card">
+      <div class="question-number" id="q-number">Question 01</div>
+      <div class="question-text" id="q-text"></div>
+      <div class="options" id="q-options"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" id="btn-back" onclick="prevQuestion()">← Back</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: EMAIL CAPTURE -->
+  <div class="screen" id="screen-email">
+    <div class="email-card">
+      <div class="question-number">Almost There</div>
+      <div class="email-headline">Where should I send your result?</div>
+      <p class="email-sub">Enter your info below and I'll send your personalized recommendation — plus the exact steps to get started.</p>
+      <div class="input-group">
+        <input class="input" type="text" id="input-name" placeholder="First name" />
+        <input class="input" type="email" id="input-email" placeholder="Email address" />
+      </div>
+      <button class="btn btn-primary" style="width:100%; padding:18px;" id="btn-submit" onclick="handleSubmit()">Show My Result →</button>
+      <p class="privacy">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: RESULT -->
+  <div class="screen" id="screen-result">
+    <div class="result-card" id="result-card"></div>
+    <button class="retake" onclick="retakeQuiz()">Retake the quiz</button>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    text: "When you take your shirt off, what do you actually see?",
+    options: [
+      { text: "Soft all over — stomach, chest, love handles", sub: "Visibly overweight", value: "cut" },
+      { text: "Not fat, but not lean either — soft in the middle, no real definition", sub: "The classic skinny fat look", value: "recomp" },
+      { text: "Lean but flat — low body fat, no real muscle", sub: "Thin but not athletic", value: "bulk" },
+      { text: "Pretty lean — I just want to add size and shape", sub: "Close to where I want to be", value: "bulk" }
+    ]
+  },
+  {
+    text: "What happens when you lose weight?",
+    options: [
+      { text: "I look better — leaner and more athletic", sub: "Weight loss works for me", value: "cut" },
+      { text: "I just look smaller. Still soft, no definition", sub: "The skinny fat trap", value: "recomp" },
+      { text: "I look worse — I lose what little muscle I had", sub: "Cutting makes things worse", value: "bulk" },
+      { text: "I haven't really tried to lose weight", sub: "", value: "bulk" }
+    ]
+  },
+  {
+    text: "What does your training look like right now?",
+    options: [
+      { text: "Consistent lifting with a real program", sub: "Progressive overload, tracking weights", value: "bulk" },
+      { text: "I lift but inconsistently — no real structure", sub: "On and off, no program", value: "recomp" },
+      { text: "Mostly cardio, light weights, or nothing", sub: "Not building much muscle", value: "recomp" },
+      { text: "I train hard but haven't seen much change", sub: "Effort without results", value: "recomp" }
+    ]
+  },
+  {
+    text: "What's your current body fat situation?",
+    options: [
+      { text: "High — I'm carrying noticeable fat I need to lose", sub: "Probably 20%+ body fat", value: "cut" },
+      { text: "Medium — I'm not fat but I'm not lean either", sub: "Somewhere in the 15-20% range", value: "recomp" },
+      { text: "Low — I'm already lean, just need muscle", sub: "Under 12% body fat", value: "bulk" },
+      { text: "Honestly I have no idea", sub: "", value: "recomp" }
+    ]
+  },
+  {
+    text: "What's your main goal right now?",
+    options: [
+      { text: "Look athletic with my shirt off", sub: "Definition, not just size", value: "recomp" },
+      { text: "Lose fat and get lean as fast as possible", sub: "Scale weight is the priority", value: "cut" },
+      { text: "Build serious size and strength", sub: "I want to be bigger", value: "bulk" },
+      { text: "Stop looking soft — I want actual muscle definition", sub: "The skinny fat fix", value: "recomp" }
+    ]
+  },
+  {
+    text: "How would you describe your relationship with food?",
+    options: [
+      { text: "I eat too much — I know I'm in a surplus", sub: "Overeating is the main issue", value: "cut" },
+      { text: "I restrict, then blow it — constant cycle", sub: "Bouncing between dieting and eating normally", value: "recomp" },
+      { text: "I eat clean but don't track — probably undereating", sub: "Could be eating too little", value: "bulk" },
+      { text: "I track and hit my macros consistently", sub: "Dialed in already", value: "bulk" }
+    ]
+  }
+];
+
+let current = 0;
+let answers = [];
+let selectedIndex = null;
+
+function startQuiz() {
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  document.getElementById('q-number').textContent = `Question ${String(current + 1).padStart(2, '0')}`;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('progress-count').textContent = `${current + 1} / ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${((current + 1) / questions.length) * 100}%`;
+  document.getElementById('btn-back').style.display = current === 0 ? 'none' : 'block';
+
+  const optionsEl = document.getElementById('q-options');
+  optionsEl.innerHTML = '';
+  const letters = ['A','B','C','D'];
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option' + (answers[current] === i ? ' selected' : '');
+    btn.innerHTML = `
+      <div class="option-letter">${letters[i]}</div>
+      <div>
+        <div class="option-text">${opt.text}</div>
+        ${opt.sub ? `<div class="option-sub">${opt.sub}</div>` : ''}
+      </div>
+    `;
+    btn.onclick = () => selectOption(i);
+    optionsEl.appendChild(btn);
+  });
+
+  selectedIndex = answers[current] !== undefined ? answers[current] : null;
+  document.getElementById('btn-next').disabled = selectedIndex === null;
+
+  // animate card
+  const card = document.getElementById('question-card');
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = 'fadeUp 0.4s ease both';
+}
+
+function selectOption(i) {
+  selectedIndex = i;
+  answers[current] = i;
+  document.querySelectorAll('.option').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQuestion() {
+  if (selectedIndex === null) return;
+  if (current < questions.length - 1) {
+    current++;
+    renderQuestion();
+  } else {
+    showScreen('screen-email');
+  }
+}
+
+function prevQuestion() {
+  if (current > 0) {
+    current--;
+    renderQuestion();
+  }
+}
+
+function getResult() {
+  const counts = { cut: 0, bulk: 0, recomp: 0 };
+  answers.forEach((ansIdx, qIdx) => {
+    const val = questions[qIdx].options[ansIdx].value;
+    counts[val]++;
+  });
+  if (counts.recomp >= counts.cut && counts.recomp >= counts.bulk) return 'recomp';
+  if (counts.cut > counts.bulk) return 'cut';
+  return 'bulk';
+}
+
+async function subscribeToKlaviyo(email, firstName, result) {
+  const KLAVIYO_API_KEY = 'Xu3fyr';
+  const LIST_IDS = {
+    recomp: 'TXWuGf',
+    cut: 'UFVMRf',
+    bulk: 'WXNdf7'
+  };
+  const LIST_ID = LIST_IDS[result] || LIST_IDS.recomp;
+  try {
+    const payload = {
+      data: {
+        type: 'subscription',
+        attributes: {
+          profile: {
+            data: {
+              type: 'profile',
+              attributes: {
+                email: email,
+                first_name: firstName,
+                properties: {
+                  quiz_result: result
+                }
+              }
+            }
+          }
+        },
+        relationships: {
+          list: {
+            data: {
+              type: 'list',
+              id: LIST_ID
+            }
+          }
+        }
+      }
+    };
+    const response = await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + KLAVIYO_API_KEY, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'revision': '2023-12-15'
+      },
+      body: JSON.stringify(payload)
+    });
+    console.log('Klaviyo status:', response.status, 'List:', LIST_ID, 'Result:', result);
+  } catch(e) {
+    console.log('Klaviyo error:', e);
+  }
+}
+
+function handleSubmit() {
+  const email = document.getElementById('input-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('input-email').style.borderColor = '#e74c3c';
+    document.getElementById('input-email').focus();
+    return;
+  }
+  const btn = document.getElementById('btn-submit');
+  btn.textContent = 'Loading...';
+  btn.disabled = true;
+  showResult();
+}
+
+async function showResult() {
+  const name = document.getElementById('input-name').value.trim() || 'Hey';
+  const email = document.getElementById('input-email').value.trim();
+  const result = getResult();
+
+  // Subscribe to Klaviyo in background
+  if (email) {
+    subscribeToKlaviyo(email, name, result);
+  }
+
+  showScreen('screen-result');
+
+  const results = {
+    recomp: {
+      tag: 'recomp',
+      tagText: 'Your Answer: Neither',
+      headline: `${name}, you don't need to bulk or cut.`,
+      sub: `You need to recomp — and it's the only thing that's actually going to fix what you're dealing with.`,
+      why: `Here's the truth most guys never hear: <strong>bulking will make you fatter before it makes you bigger</strong>, and <strong>cutting will just make you a smaller version of the same problem.</strong> You're not carrying too much fat or too little muscle in isolation — you have both problems at the same time. That's the skinny fat trap, and the only way out is recomposition: building muscle while slowly tightening up body fat at the same time. It's not the fastest approach on paper, but it's the only one that actually changes the way you look.`,
+      pitchTitle: 'The Skinny Fat Fix — $49.99',
+      pitchText: `You've tried bulking. You got chubbier. You've tried cutting. You got smaller but still soft. That's because the skinny fat body doesn't respond to generic advice — it needs a different approach entirely. This is that approach. The exact system I used to go from soft and undefined to lean and athletic without extreme dieting or living in the gym.`,
+      includes: [
+        'Lifting program built specifically for skinny fat physiques',
+        'Nutrition guide — simple rules that support fat loss and muscle growth',
+        'Macro calculation system — know exactly what to eat for your body',
+        'Supplement guide — what actually helps vs. what\'s a waste of money',
+        'Community access — guys working toward the same goal'
+      ],
+      cta: 'Get Instant Access — $49.99',
       link: 'https://stan.store/notmattgraham/p/the-skinny-fat-fix'
     },
     cut: {
